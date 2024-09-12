@@ -6,6 +6,8 @@ localStorage.setItem("nome",Nm)
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
+
+if (!data.includes("gozar")) {
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
@@ -36,7 +38,7 @@ fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
         <hr>
       `;
     });
-  })
+ } })
   .catch(error => console.error('Erro ao buscar os dados:', error));
   
   
