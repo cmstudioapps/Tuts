@@ -1,0 +1,16 @@
+{
+  "name": "Tuts 🍿",
+  "short_name": "Tuts",
+  "description": "/",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ff4500",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/Yf3CtPM.jpeg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

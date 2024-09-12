@@ -1,0 +1,172 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #444;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20vh;
+    font-weight: bold;
+}
+
+header {
+   
+    padding: 10px;
+    background-color: #000;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+.icons img {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #111;
+}
+
+.filters button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background-color: #444;
+}
+
+.content {
+    padding: 20px;
+    background-color: #000;
+   
+}
+
+.item {
+    display: flex;
+    margin-bottom: 20px;
+    
+}
+
+.date {
+    margin-right: 20px;
+    text-align: center;
+}
+
+.date span {
+    display: block;
+    font-size: 16px;
+}
+
+.date span:first-child {
+    font-size: 12px;
+    color: #999;
+}
+
+.info img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.info h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.info p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+ footer {
+    
+    background-color: #111;
+    padding: 5px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.5);
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+footer nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 10px 0;
+}
+
+footer nav ul li a:hover {
+    background-color: #333;
+    border-radius: 10px;
+}
+
+input,textarea {
+   
+   background-color: black;
+   color: white;
+   font-weight: bold;
+   padding: 2vh;
+   border-radius: 3vh;
+   outline: none;
+   border: none;
+   
+   
+}
+
+
+#file {
+   
+   
+   
+}
+#file {
+  display: none; /* Esconde o input de arquivo original */
+}
+
+#file + label {
+  background-color: transparent;
+  
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#file + label:hover {
+  background-color: #0056b3;
+}
+
+hr {
+  background-color: whitesmoke;
+  padding: 0.1px;
+  border: none;
+  
+  
+}
