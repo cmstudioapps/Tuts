@@ -128,7 +128,7 @@ function gerarIdAleatorio(tamanho) {
   })
     } else {
       
-      alert("Seu código tem caracteres suspeitos")
+      alert("Seu texto tem caracteres suspeitos")
       
     }
   }
