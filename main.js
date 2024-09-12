@@ -94,7 +94,14 @@ function enviar() {
     })
     .then(response => response.json())
     .then(data => {
-      location.reload();
+      
+      Swal.fire({
+  title: 'Enviado',
+  text: 'Sua mensagem foi entregue',
+  icon: 'success',
+  confirmButtonText: 'OK'
+});
+      
     });
   } else {
     alert("Seu texto tem caracteres suspeitos");
