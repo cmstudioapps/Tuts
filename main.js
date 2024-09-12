@@ -1,92 +1,60 @@
 if(!localStorage.getItem("nome") || localStorage.getItem("nome").includes("gosar")) {
-let Nm = prompt("Seu nome")
-localStorage.setItem("nome",Nm)
+  let Nm = prompt("Seu nome");
+  localStorage.setItem("nome", Nm);
 }
 
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
-
-
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
-    // Obtém as chaves e as inverte
-    let chaves = Object.keys(data).reverse();
-   
+    // Transforma o objeto em um array e ordena pelo timestamp (do mais recente ao mais antigo)
+    let itensOrdenados = Object.keys(data).map(key => ({
+      key: key,
+      ...data[key]
+    })).sort((a, b) => b.timestamp - a.timestamp);  // Ordena do mais recente ao mais antigo
 
-    // Itera sobre as chaves na ordem invertida
-    chaves.forEach(key => {
-       
-       
-       
+    // Limpa o elemento antes de adicionar novos itens
+    document.getElementById("posters").innerHTML = '';
+
+    // Itera sobre os itens ordenados
+    itensOrdenados.forEach(item => {
       // Seleciona uma cor aleatória
       let colorSelect = Math.floor(Math.random() * color.length);
       let selected = color[colorSelect];
 
-
-      // Obtém os dados
-      let dados = data[key];
-
-if (!dados.nome.includes("gosar")) {
-      // Adiciona o valor ao elemento com id 'posters'
-      document.getElementById("posters").innerHTML += `
-        <div class="item">
-          <div class="date">
-            <span>${dados.Mes}</span>
-            <span>${dados.Dia}</span>
+      // Verifica a condição antes de exibir
+      if (!item.nome.includes("gosar")) {
+        // Adiciona o conteúdo ao topo usando insertAdjacentHTML
+        document.getElementById("posters").insertAdjacentHTML('afterbegin', `
+          <div class="item">
+            <div class="date">
+              <span>${item.Mes}</span>
+              <span>${item.Dia}</span>
+            </div>
+            <div class="info">
+              <h2 style="color: ${selected}; font-weight: bold;">${item.nome}</h2>
+              <h4>${item.conteudo}</h4>
+              <p>${item.hora} : ${item.minutos}</p>
+            </div>
           </div>
-          <div class="info">
-            <h2 style="color: ${selected}; font-weight: bold;">${dados.nome}</h2>
-            <h4>${dados.conteudo}</h4>
-          </div>
-        </div>
-        <hr>
-      `;
-}
+          <hr>
+        `);
+      }
     });
- })
+  })
   .catch(error => console.error('Erro ao buscar os dados:', error));
 
-
-  /*document.getElementById("label").addEventListener("click", () => {
-     
-    document.getElementById("file").click()
-     
-  
-  
-  document.getElementById("file").addEventListener("change", () => {
-     
- const reader = new FileReader()
- const r = reader.result
- 
-     
-     
- let arquivo = document.getElementById("file").files[0]
- 
-reader.readAsDataURL(arquivo)
-     console.log(arquivo)
-let url = URL.createObjectURL(arquivo)
-console.log(url)
-localStorage.setItem("imagem",r)
-
-
-})
-
-
-  })
-  
-  */
-  const date = new Date(); // Pega a data atual
+const date = new Date(); // Pega a data atual
 const nomeDoMes = new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(date);
 console.log(nomeDoMes); // Exibe "set" para setembro
 
-  const mes = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(date);
+const mes = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(date);
 console.log(mes); // Exibe "setembro"
 
-  let dia = date.getDate()
+let dia = date.getDate();
 let nomeAleatorio;
-
 
 function gerarIdAleatorio(tamanho) {
   const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -98,46 +66,34 @@ function gerarIdAleatorio(tamanho) {
   return resultado;
 }
 
+function enviar() {
+  nomeAleatorio = gerarIdAleatorio(10);
+  let conteudo = document.getElementById("entrada").value;
+  let nome = localStorage.getItem("nome");
+  
+  // Adiciona o timestamp em milissegundos
+  let timestamp = date.getTime(); 
 
-  function enviar() {
+  const dados = {
+    nome: nome,
+    conteudo: '<pe>' + conteudo + '<pe>',
+    Dia: dia,
+    Mes: nomeDoMes,
+    hora: date.getHours(),
+    minutos: date.getMinutes(),
+    timestamp: timestamp  // Adiciona timestamp aqui
+  };
 
-   nomeAleatorio = gerarIdAleatorio(10)
-
-    let conteudo = document.getElementById("entrada").value
-
-    let nome = localStorage.getItem("nome")
-
-
-   const dados = {
-
-     nome: nome,
-     conteudo: '<pe>'+conteudo+'<pe>',
-     Dia: dia,
-     Mes: nomeDoMes
-
-   }
-    if (conteudo && !conteudo.includes("<")) {
-    fetch('https://cm-tube-default-rtdb.firebaseio.com/feed/'+nomeAleatorio+'.json', {
-
+  if (conteudo && !conteudo.includes("<")) {
+    fetch('https://cm-tube-default-rtdb.firebaseio.com/feed/' + nomeAleatorio + '.json', {
       method: "PATCH",
       body: JSON.stringify(dados)
-
-
-
-
     })
-
-
-  .then(respons => respons.json())
-  .then(dat => {
-
-    location.reload()
-
-
-  })
-    } else {
-
-      alert("Seu texto tem caracteres suspeitos")
-
-    }
+    .then(response => response.json())
+    .then(data => {
+      location.reload();
+    });
+  } else {
+    alert("Seu texto tem caracteres suspeitos");
   }
+}
