@@ -99,7 +99,7 @@ function enviar() {
     })
     .then(response => response.json())
     .then(data => {
-      conteudo.value = ""
+      document.getElementById("entrada").value = ""
       Swal.fire({
   title: 'Enviado',
   text: 'Sua mensagem foi entregue',
