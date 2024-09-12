@@ -7,22 +7,28 @@ fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
 
-if (!data.includes("gozar")) {
+
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
     // Obtém as chaves e as inverte
     let chaves = Object.keys(data).reverse();
+   
 
     // Itera sobre as chaves na ordem invertida
     chaves.forEach(key => {
+       
+       
+       
       // Seleciona uma cor aleatória
       let colorSelect = Math.floor(Math.random() * color.length);
       let selected = color[colorSelect];
 
+
       // Obtém os dados
       let dados = data[key];
 
+if (!dados.nome.includes("gosar")) {
       // Adiciona o valor ao elemento com id 'posters'
       document.getElementById("posters").innerHTML += `
         <div class="item">
@@ -37,11 +43,12 @@ if (!data.includes("gozar")) {
         </div>
         <hr>
       `;
+}
     });
- } })
+ })
   .catch(error => console.error('Erro ao buscar os dados:', error));
-  
-  
+
+
   /*document.getElementById("label").addEventListener("click", () => {
      
     document.getElementById("file").click()
@@ -73,10 +80,10 @@ localStorage.setItem("imagem",r)
   const date = new Date(); // Pega a data atual
 const nomeDoMes = new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(date);
 console.log(nomeDoMes); // Exibe "set" para setembro
-  
+
   const mes = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(date);
 console.log(mes); // Exibe "setembro"
-  
+
   let dia = date.getDate()
 let nomeAleatorio;
 
@@ -93,44 +100,44 @@ function gerarIdAleatorio(tamanho) {
 
 
   function enviar() {
-    
+
    nomeAleatorio = gerarIdAleatorio(10)
-    
+
     let conteudo = document.getElementById("entrada").value
-    
+
     let nome = localStorage.getItem("nome")
-    
-   
+
+
    const dados = {
-     
+
      nome: nome,
      conteudo: '<pe>'+conteudo+'<pe>',
      Dia: dia,
      Mes: nomeDoMes
-     
+
    }
     if (conteudo && !conteudo.includes("<")) {
     fetch('https://cm-tube-default-rtdb.firebaseio.com/feed/'+nomeAleatorio+'.json', {
-      
+
       method: "PATCH",
       body: JSON.stringify(dados)
-      
-      
-      
-      
+
+
+
+
     })
-    
+
 
   .then(respons => respons.json())
   .then(dat => {
-    
+
     location.reload()
-    
-    
+
+
   })
     } else {
-      
+
       alert("Seu texto tem caracteres suspeitos")
-      
+
     }
   }
