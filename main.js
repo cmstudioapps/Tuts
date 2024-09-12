@@ -8,6 +8,11 @@ setInterval(()=> {
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
+     window.scrollTo({
+  top: document.body.scrollHeight,
+  behavior: 'smooth'
+});
+     
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
@@ -94,7 +99,7 @@ function enviar() {
     })
     .then(response => response.json())
     .then(data => {
-      
+      conteudo.value = ""
       Swal.fire({
   title: 'Enviado',
   text: 'Sua mensagem foi entregue',
