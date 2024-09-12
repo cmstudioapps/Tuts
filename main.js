@@ -75,6 +75,9 @@ function gerarIdAleatorio(tamanho) {
 }
 
 function enviar() {
+  // Crie uma nova instância de Date aqui
+  let date = new Date();
+  
   nomeAleatorio = gerarIdAleatorio(10);
   let conteudo = document.getElementById("entrada").value;
   let nome = localStorage.getItem("nome");
@@ -85,11 +88,11 @@ function enviar() {
   const dados = {
     nome: nome,
     conteudo: '<pe>' + conteudo + '<pe>',
-    Dia: dia,
-    Mes: nomeDoMes,
-    hora: date.getHours(),
-    minutos: date.getMinutes(),
-    timestamp: timestamp  // Adiciona timestamp aqui
+    Dia: date.getDate(),  // Usa o dia atual
+    Mes: new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(date),  // Usa o mês atual
+    hora: date.getHours(),  // Usa a hora atual
+    minutos: date.getMinutes(),  // Usa os minutos atuais
+    timestamp: timestamp  // Adiciona o timestamp correto
   };
 
   if (conteudo && !conteudo.includes("<")) {
@@ -101,12 +104,11 @@ function enviar() {
     .then(data => {
       document.getElementById("entrada").value = ""
       Swal.fire({
-  title: 'Enviado',
-  text: 'Sua mensagem foi entregue',
-  icon: 'success',
-  confirmButtonText: 'OK'
-});
-      
+        title: 'Enviado',
+        text: 'Sua mensagem foi entregue',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
     });
   } else {
     alert("Seu texto tem caracteres suspeitos");
