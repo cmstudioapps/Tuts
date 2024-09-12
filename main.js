@@ -1,4 +1,7 @@
-
+if(!localStorage.getItem("nome")) {
+let Nm = prompt("Seu nome")
+localStorage.setItem("nome",Nm)
+}
 
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
