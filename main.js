@@ -3,6 +3,8 @@ if(!localStorage.getItem("nome") || localStorage.getItem("nome").includes("gosar
   localStorage.setItem("nome", Nm);
 }
 
+setInterval(()=> {
+
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
@@ -45,6 +47,7 @@ fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
     });
   })
   .catch(error => console.error('Erro ao buscar os dados:', error));
+},2000)
 
 const date = new Date(); // Pega a data atual
 const nomeDoMes = new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(date);
