@@ -3,6 +3,8 @@ if(!localStorage.getItem("nome") || localStorage.getItem("nome").includes("gosar
   localStorage.setItem("nome", Nm);
 }
 
+let rolar = 1
+
 setInterval(()=> {
 
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
@@ -12,7 +14,7 @@ fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   top: document.body.scrollHeight,
   behavior: 'smooth'
 });
-     
+     rolar = 0
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
