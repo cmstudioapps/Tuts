@@ -33,7 +33,41 @@
        
     </div>
 
+<dialog id="dialog" style="border: none; padding: 0;">
+    <div style="background-color: #141414; color: white; padding: 20px; border-radius: 10px; max-width: 300px; text-align: center; font-family: Arial, sans-serif;">
+        <pe style="font-size: 18px; margin-bottom: 20px;">Deseja baixar nosso aplicativo?
+        assim você não precisa abrir o navegador sempre que for acessar o chat.
+        </pe>
+        <br><br />
+        <a id="baixar" href="Tuts.apk" style="background-color: #e50914; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-right: 10px;" download onclick="baixou()">Baixar</a>
+        <button id="fechar" style="background-color: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Fechar</button>
+    </div>
+</dialog>
 
+<script>
+
+setTimeout(()=> {
+    // Verifica se o site está rodando como PWA
+    if (!window.matchMedia('(display-mode: fullscreen)').matches) {
+        const dialog = document.getElementById('dialog');
+        dialog.showModal();
+
+        // Fechar o diálogo
+        document.getElementById('fechar').addEventListener('click', () => {
+            dialog.close();
+        });
+    }
+},5000)
+
+ function baixou() {
+   
+   dialog.close()
+   
+   
+ }
+
+
+</script>
 
     <script src="main.js"></script>
 </body>
