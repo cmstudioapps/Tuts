@@ -4,21 +4,14 @@ if(!localStorage.getItem("nome") || localStorage.getItem("nome").includes("gosar
 }
 
 let rolar = 1
-
+console.log(rolar)
 setInterval(()=> {
 
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
+console.log(rolar)
 
-if(rolar === 1) {
-     window.scrollTo({
-  top: document.body.scrollHeight,
-  behavior: 'smooth'
-});
-
-     
-}
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
@@ -34,12 +27,12 @@ if(rolar === 1) {
     // Itera sobre os itens ordenados
     itensOrdenados.forEach(item => {
 
-if (rolar === 1) {
+
       // Seleciona uma cor aleatória
       let colorSelect = Math.floor(Math.random() * color.length);
       let selected = color[colorSelect];
-rolar = 0
-}
+
+
 
       // Verifica a condição antes de exibir
       if (!item.nome.includes("gosar")) {
@@ -59,6 +52,18 @@ rolar = 0
           <hr>
         `);
       }
+      if(rolar === 1) {
+  rolar = 0;
+  
+  
+  setTimeout(() => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+    console.log(rolar);
+  }, 500);  
+}
     });
   })
   .catch(error => console.error('Erro ao buscar os dados:', error));
@@ -87,11 +92,11 @@ function gerarIdAleatorio(tamanho) {
 function enviar() {
   // Crie uma nova instância de Date aqui
   let date = new Date();
-  
+
   nomeAleatorio = gerarIdAleatorio(10);
   let conteudo = document.getElementById("entrada").value;
   let nome = localStorage.getItem("nome");
-  
+
   // Adiciona o timestamp em milissegundos
   let timestamp = date.getTime(); 
 
