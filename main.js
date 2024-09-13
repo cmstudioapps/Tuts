@@ -10,11 +10,15 @@ setInterval(()=> {
 fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
   .then(response => response.json())
   .then(data => {
+
+if(rolar === 1) {
      window.scrollTo({
   top: document.body.scrollHeight,
   behavior: 'smooth'
 });
+
      rolar = 0
+}
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
 
