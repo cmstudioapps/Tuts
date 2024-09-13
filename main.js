@@ -17,7 +17,7 @@ if(rolar === 1) {
   behavior: 'smooth'
 });
 
-     rolar = 0
+     
 }
     // Defina as cores
     let color = ["red", "blue", "greenyellow", "orange"];
@@ -33,9 +33,13 @@ if(rolar === 1) {
 
     // Itera sobre os itens ordenados
     itensOrdenados.forEach(item => {
+
+if (rolar === 1) {
       // Seleciona uma cor aleatória
       let colorSelect = Math.floor(Math.random() * color.length);
       let selected = color[colorSelect];
+rolar = 0
+}
 
       // Verifica a condição antes de exibir
       if (!item.nome.includes("gosar")) {
