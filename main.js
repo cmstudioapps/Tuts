@@ -73,7 +73,7 @@ setInterval(() => {
                             <div class="info">
                                 <h2 style="color: ${selected}; font-weight: bold;">${item.nome}</h2>
                                 <h4>${item.conteudo}</h4>
-                                ${item.imagemURL ? `<img src="${item.imagemURL}" alt="imagem" style="max-width: 200px;"/>` : ''}
+                                ${item.imagemURL ? `<img id='imgg' src="${item.imagemURL}" alt="imagem"/>` : ''}
                                 <p>${item.hora} : ${item.minutos}</p>
                             </div>
                         </div>
