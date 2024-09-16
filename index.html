@@ -6,70 +6,81 @@
     <title>Tuts</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="app.json">
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Importação dos módulos Firebase -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyByqIaq_UAXArSSK2gdl0jiNs-tTQiQYNo",
+            authDomain: "cm-tube.firebaseapp.com",
+            databaseURL: "https://cm-tube-default-rtdb.firebaseio.com",
+            projectId: "cm-tube",
+            storageBucket: "cm-tube.appspot.com",
+            messagingSenderId: "720070431030",
+            appId: "1:720070431030:web:39d53225c8fd6e42a9a397",
+            measurementId: "G-PC04HSMRFS"
+        };
+
+        // Inicialize o Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        // Disponibiliza o Firebase e suas funcionalidades globalmente
+        window.firebase = { storage, ref, uploadBytes, getDownloadURL };
+    </script>
 </head>
 <body>
     <header>
         <h1>Tuts 🍿 (Chat público)</h1> <br>
         <p>Chame pessoas para jogar, divulgue suas obras, divirta-se neste chat online!</p>
-
     </header>
 
-   
+    <div class="content" id="posters"></div>
+    
+    <div class="filters">
+        <input id="file" type="file">
+        <label id="label" for="file">📸</label> 
+        <textarea id="entrada" placeholder="Digite algo..."></textarea>
+        <button id="enviar">Enviar</button>
+    </div>
 
-    <div class="content" id="posters">
-      
-     
-      
+    <dialog id="dialog" style="border: none; padding: 0;">
+        <div style="background-color: #141414; color: white; padding: 20px; border-radius: 10px; max-width: 300px; text-align: center; font-family: Arial, sans-serif;">
+            <p style="font-size: 18px; margin-bottom: 20px;">Deseja baixar nosso aplicativo? Assim você não precisa abrir o navegador sempre que for acessar o chat.</p>
+            <br><br />
+            <a id="baixar" href="Tuts.apk" style="background-color: #e50914; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-right: 10px;" download onclick="baixou()">Baixar</a>
+            <button id="fechar" style="background-color: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;" onclick="fechar()">Fechar</button>
         </div>
-        
-  
- <div class="filters">
-      <input id="file" type="file" >
-      <label id="label" onclick="alert('Ainda não funciona para todos')">📸</label> 
-      <textarea id="entrada" placeholder="Digite algo..."></textarea>
-       
-       <button onclick="enviar()">Enviar</button>
-       
-    </div>
-
-<dialog id="dialog" style="border: none; padding: 0;">
-    <div style="background-color: #141414; color: white; padding: 20px; border-radius: 10px; max-width: 300px; text-align: center; font-family: Arial, sans-serif;">
-        <pe style="font-size: 18px; margin-bottom: 20px;">Deseja baixar nosso aplicativo?
-        assim você não precisa abrir o navegador sempre que for acessar o chat.
-        </pe>
-        <br><br />
-        <a id="baixar" href="Tuts.apk" style="background-color: #e50914; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-right: 10px;" download onclick="baixou()">Baixar</a>
-        <button id="fechar" style="background-color: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Fechar</button>
-    </div>
-</dialog>
-
-<script>
-
-setTimeout(()=> {
-    // Verifica se o site está rodando como PWA
-    if (!window.matchMedia('(display-mode: fullscreen)').matches) {
-        const dialog = document.getElementById('dialog');
-        dialog.showModal();
-
-        // Fechar o diálogo
-        document.getElementById('fechar').addEventListener('click', () => {
-            dialog.close();
+    </dialog>
+    <!-- Inclua o main.js como módulo -->
+    <script type="module" src="main.js"></script>
+    <script src="notifica.js"></script>
+    <script>
+        navigator.storage.persist().then(function(granted) {
+            if (granted) {
+                console.log("Permissão de armazenamento concedida.");
+            } else {
+                console.log("Permissão de armazenamento negada.");
+            }
         });
-    }
-},5000)
 
- function baixou() {
-   
-   dialog.close()
-   
-   
- }
+        setTimeout(() => {
+            if (!window.matchMedia('(display-mode: fullscreen)').matches) {
+                const dialog = document.getElementById('dialog');
+                dialog.showModal();
 
+                document.getElementById('fechar').addEventListener('click', () => {
+                    dialog.close();
+                });
+            }
+        }, 5000);
 
-</script>
-
-    <script src="main.js"></script>
-        <script src="notifica.js"></script>
+        function baixou() {
+            dialog.close();
+        }
+    </script>
 </body>
 </html>
