@@ -63,7 +63,7 @@ setInterval(() => {
             itensOrdenados.forEach(item => {
                 let selected = itemColors[item.key];
 
-                if (!item.nome.includes("gosar")) {
+                if (!item.nome.includes("gosar") || !item.nome.includes("pau")) {
                     document.getElementById("posters").insertAdjacentHTML('afterbegin', `
                         <div class="item">
                             <div class="date">
