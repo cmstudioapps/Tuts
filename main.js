@@ -146,6 +146,11 @@ enviar.addEventListener("click", async function() {
         })
         .then(response => response.json())
         .then(() => {
+
+               window.scrollTo({
+                 top: document.body.scrollHeight,
+                     behavior: 'smooth'
+                        });
             document.getElementById("entrada").value = "";
             document.getElementById("file").value = ""; // Limpa o campo de imagem
         })
