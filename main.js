@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 let enviar = document.getElementById("enviar")
-if (!localStorage.getItem("nome") || !localStorage.getItem("nome").includes("gosar")) {
+if (!localStorage.getItem("nome") || localStorage.getItem("nome").includes("gosar")) {
     let Nm = prompt("Seu nome");
     localStorage.setItem("nome", Nm);
 }
