@@ -177,6 +177,82 @@ hr {
 
 
 }
-#imgg {
+#imgg{
   max-width: 150vh;
+}
+#vd {
+  
+  max-width: 400px;
+  
+  
+}
+
+dialog {
+  border: none;
+  border-radius: 8px;
+  background-color: #181818;
+  padding: 20px;
+  width: 350px;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #e5e5e5;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #f6121d;
+}
+
+.btn-secondary {
+  background-color: #737373;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #8c8c8c;
+}
+#gif {
+  
+  height: 15vh;
+  
+}
+#nomeGif {
+  
+  display: flex;
+  inline-size: 4vh;
+  
+  
 }
