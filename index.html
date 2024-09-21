@@ -114,7 +114,7 @@
         });
 
         setTimeout(() => {
-            if (!window.matchMedia('(display-mode: fullscreen)').matches) {
+            if (!window.matchMedia('(display-mode: fullscreen)').matches && !windows.location.href.inclues("playbook")) {
                 const dialog = document.getElementById('dialog');
                 dialog.showModal();
 
