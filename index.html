@@ -128,5 +128,14 @@
             dialog.close();
         }
     </script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "446ad07a-0c81-4276-a2ac-e0f899ab81a7",
+    });
+  });
+</script>
 </body>
 </html>
