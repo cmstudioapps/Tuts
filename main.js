@@ -50,7 +50,7 @@ fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
     });
 
 setInterval(() => {
-    fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
+    fetch('https://cm-tube-default-rtdb.firebaseio.com/feed/.json')
         .then(response => response.json())
         .then(data => {
             let itensOrdenados = Object.keys(data).map(key => ({
