@@ -29,7 +29,7 @@ let itemColors = {};
 let geral;
 let msgAntiga = localStorage.getItem("msgAntiga");
 
-fetch('https://cm-tube-default-rtdb.firebaseio.com/feed.json')
+fetch('https://cm-tube-default-rtdb.firebaseio.com/feed/.json')
     .then(rs => rs.json())
     .then(dt => {
         geral = dt;
